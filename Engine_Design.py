@@ -26,7 +26,7 @@ def dataHandling():
     with open('SZ_Engine_CEA_Data.txt', 'r') as file:
         lines = file.readlines()
         for i, line in enumerate(lines):
-            if i == 0:  # Skip the first line (header)
+            if i == 0: 
                 continue
             parts = line.split()
             if len(parts) < 3:
