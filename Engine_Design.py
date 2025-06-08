@@ -25,7 +25,9 @@ def dataHandling():
     Isp_660 = []
     with open('SZ_Engine_CEA_Data.txt', 'r') as file:
         lines = file.readlines()
-        for line in lines:
+        for i, line in enumerate(lines):
+            if i == 0:  # Skip the first line (header)
+                continue
             parts = line.split()
             if len(parts) < 3:
                 continue
