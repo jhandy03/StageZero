@@ -150,8 +150,8 @@ if __name__ == "__main__":
         OxidizerType = 'Nitrous Oxide'
         cstar = 1419.2 #m/s
         AeAt = 6.1825
-        rhof = 789.3  #TODO: Update value
-        rhoox = 1125.0  #TODO: Update value
+        rhof = 789.4  #TODO: Update value
+        rhoox = 776.415  #TODO: Update value
         DisCoef = 0.6  # Discharge coefficient (Maybe Update?)
         OrificeCountf = 1 #TODO: Update value
         OrificeCountox = 1 #TODO: Update value
