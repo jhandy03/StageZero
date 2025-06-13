@@ -96,7 +96,8 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     
     OxiArea = mdot_oxidizer/(DisCoef*(math.sqrt(2*rhoox*(Pinjection-Pc))))
     OrificeAreaox = OxiArea/OrificeCountox
-    OrificeDiamox = (4*OrificeAreaox/math.pi)**0.5
+    baseox = 0.002 #mm
+    OrificeLengthox = OrificeAreaox/baseox
     
     Ac = AcAt*At
     Dc = (4*Ac/math.pi)**0.5
@@ -120,7 +121,7 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     print(f'Fuel Area:                          {FuelArea*1e6:.3f} mm^2')
     print(f'Fuel Orifice Diameter:              {OrificeDiamf*1000:.3f} mm')
     print(f'Oxidizer Area:                      {OxiArea*1e6:.3f} mm^2')
-    print(f'Oxidizer Orifice Diameter:          {OrificeDiamox*1000:.3f} mm')
+    print(f'Oxidizer Orifice Length:            {OrificeLengthox*1000:.3f} mm')
     print('\n----------Combustion Chamber Parameters-----------')
     print(f'Chamber Area:                       {Ac*1e6:.3f} mm^2')
     print(f'Chamber Diameter:                   {Dc*1000:.3f} mm')
@@ -141,7 +142,7 @@ if __name__ == "__main__":
     print('Use default parameters? (y/n)')
     default = input().strip().lower()
     if default == 'y':
-        EngineName = 'Vulcan' #TODO: Update value
+        EngineName = 'Gallus' #TODO: Update value
         runtime = 10 # sec
         Thrust = 5000 #N
         Pc = 600 #psi
@@ -154,7 +155,7 @@ if __name__ == "__main__":
         rhoox = 776.415  #TODO: Update value
         DisCoef = 0.6  # Discharge coefficient (Maybe Update?)
         OrificeCountf = 1 #TODO: Update value
-        OrificeCountox = 1 #TODO: Update value
+        OrificeCountox = 16 #TODO: Update value
         AcAt = 5 #TODO: Update value
         Lstar = 0.5 #TODO: Update value
     else:
