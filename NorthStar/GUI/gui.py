@@ -62,8 +62,30 @@ class TestStandGUI:
         self.pressure_ox = self._create_ox_pressure(self.pressure_frame)
         self.pressure_ox.grid(row=0,column=1, padx=10, pady=10)
         
+        temptitle = ctk.CTkLabel(self.root,text='Temperature', font=("Courier New Bold", 24))
+        temptitle.grid(row=4,column=0,columnspan=2, pady=(5, 10))
+        self.temp_frame = ctk.CTkFrame(self.root)
+        self.temp_frame.grid(row=5,column=0,columnspan=2, padx=10, pady=10,sticky='ew')
+        self.temp_frame.columnconfigure(0, weight=0)
+        self.temp_frame.columnconfigure(1, weight=1)
+        self.temp_frame.columnconfigure(2, weight=0)
+        self.temp_throat = self._create_temperature_bars(self.temp_frame, "Throat Temp", 0, 1000)
+        self.temp_chamber = self._create_temperature_bars(self.temp_frame, "Chamber Temp", 0, 3500)
+        self.temp_nozzle = self._create_temperature_bars(self.temp_frame, "Nozzle Temp", 0, 800)
+        self.temp_ambient = self._create_temperature_bars(self.temp_frame, "Other", 0, 150)
+        self.temp_throat.grid(row=0,column=0, padx=0, pady=(10,5),sticky='ew')
+        self.temp_chamber.grid(row=1,column=0, padx=0, pady=5,sticky='ew')
+        self.temp_nozzle.grid(row=2,column=0, padx=0, pady=5,sticky='ew')
+        self.temp_ambient.grid(row=3,column=0, padx=0, pady=(5,10),sticky='ew')
         
+        logo = Image.open("SZ_Background.png")
+        self.logo_photo = ctk.CTkImage(light_image=logo, dark_image=logo, size=(400, 100))
+        self.logoframe = ctk.CTkFrame(self.root)
+        self.logoframe.grid(row=0,column=2, columnspan=3, padx=10, pady=10)
+        logo_label = ctk.CTkLabel(self.logoframe, image=self.logo_photo, text="")
+        logo_label.pack()
         
+
         #TODO: Find where the buttons should go
         # self.start_button = self._create_start_button()
         # self.start_button.grid(row=1, column=0, columnspan=2, pady=(10, 5))
@@ -175,19 +197,48 @@ class TestStandGUI:
         return ox_pressure
     
     def _create_thrust_plot(self,parent=None):
+        #TODO: finish implementing
         if parent is None:
             parent = self.root
         thrust_plot = plt.figure(figsize=(10, 5))
         plt.title("Thrust Plot")
         
+    def _create_temperature_bars(self, parent, label, min_val, max_val):
+        if parent is None:
+            parent = self.root
         
-
-
-
-
-
-
-
+        temp_container = ctk.CTkFrame(parent)
+        temp_container.columnconfigure(0,weight=0)
+        temp_container.columnconfigure(1, weight=1)
+        temp_container.columnconfigure(2, weight=0)
+        
+        label_widget = ctk.CTkLabel(temp_container, text=f"{label}", 
+                                   font=("Courier New", 12))
+        label_widget.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+        
+        progress_bar = ctk.CTkProgressBar(temp_container, orientation="horizontal", 
+                                        width=200, height=20, corner_radius=10)
+        progress_bar.set(0)
+        progress_bar.grid(row=0, column=1, padx=10, pady=5)
+        
+        value_label = ctk.CTkLabel(temp_container, text=f"{min_val:.2f} K", 
+                                  font=("Courier New", 12))
+        value_label.grid(row=0, column=2, padx=10, pady=5, sticky="e")
+        
+        temp_bar_data = {
+            'bar': progress_bar,
+            'min': min_val,
+            'max': max_val,
+            'label': label_widget,
+            'value_label': value_label
+        }
+        
+        if not hasattr(self, 'temp_bars'):
+            self.temp_bars = {}
+        
+        self.temp_bars[label] = temp_bar_data
+        
+        return temp_container
 
 
 
