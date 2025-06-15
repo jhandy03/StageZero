@@ -36,6 +36,7 @@ class TestStandGUI:
         self.abort_state = {'aborted': False}
         self.oximeter_running = False
         self.fuelmeter_running = False
+        self.arrange_gui()
         
     def arrange_gui(self):
         ctk.set_appearance_mode("dark")

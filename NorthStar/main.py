@@ -26,7 +26,6 @@ from Controls.controls import Controls
 
 if __name__ == "__main__":
     gui = TestStandGUI()
-    gui.arrange_gui()
     # propm =  PropellantMeasurements()
     # sensors = SensorSuite()
     # actuators = Actuators()
