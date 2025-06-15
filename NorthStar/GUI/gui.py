@@ -28,6 +28,7 @@ import customtkinter as ctk
 from tkdial import Meter
 import time
 import matplotlib.pyplot as plt
+# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg   #use later for the thrust plot
 from PIL import Image, ImageTk
 
 
@@ -86,7 +87,6 @@ class TestStandGUI:
         logo_label = ctk.CTkLabel(self.logoframe, image=self.logo_photo, text="")
         logo_label.pack()
         
-
         #TODO: Find where the buttons should go
         # self.start_button = self._create_start_button()
         # self.start_button.grid(row=1, column=0, columnspan=2, pady=(10, 5))
@@ -95,6 +95,8 @@ class TestStandGUI:
         # self.abort_button.grid(row=2, column=0, columnspan=2, pady=(5, 10))
         
         self.root.mainloop()
+    
+        
     
     def _create_oximeter(self,parent=None):
         if parent is None:
@@ -199,10 +201,8 @@ class TestStandGUI:
     
     def _create_thrust_plot(self,parent=None):
         #TODO: finish implementing
-        if parent is None:
-            parent = self.root
-        thrust_plot = plt.figure(figsize=(10, 5))
-        plt.title("Thrust Plot")
+        return None
+        
         
     def _create_temperature_bars(self, parent, label, min_val, max_val):
         if parent is None:
