@@ -14,6 +14,9 @@ TODO:
     
     
 Notes:
+    Make sure that customtkinter, tkdial are installed before running
+    Will add a requirements.txt file later that will allow you to run a one line
+        command to install all dependencies
 
 
 """
@@ -31,4 +34,3 @@ if __name__ == "__main__":
     # actuators = Actuators()
     # controls = Controls()
     
-#HEllo World
