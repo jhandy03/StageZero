@@ -16,7 +16,6 @@ TODO:
 Notes:
     Before running, make sure the following libraries/packages are installed:
     - customtkinter
-    - ttkbootstrap
     - matplotlib
     - tkdial
     To install, use pip in the terminal as: pip install *library_name*
@@ -80,12 +79,7 @@ class TestStandGUI:
         self.temp_nozzle.grid(row=2,column=0, padx=0, pady=5,sticky='ew')
         self.temp_ambient.grid(row=3,column=0, padx=0, pady=(5,10),sticky='ew')
         
-        logo = Image.open("SZ_Background.png")
-        self.logo_photo = ctk.CTkImage(light_image=logo, dark_image=logo, size=(400, 100))
-        self.logoframe = ctk.CTkFrame(self.root)
-        self.logoframe.grid(row=0,column=2, columnspan=3, padx=10, pady=10)
-        logo_label = ctk.CTkLabel(self.logoframe, image=self.logo_photo, text="")
-        logo_label.pack()
+        
         
         #TODO: Find where the buttons should go
         # self.start_button = self._create_start_button()
