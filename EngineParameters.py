@@ -89,15 +89,16 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     De = (4*Ae/math.pi)**0.5
     
     Pinjection = 1.3*Pc*6894.76  #TODO: Not sure if this value is correct. revisit later (6894.75: psi -> Pa)
-    
+    Pc = Pc * 6894.76  # Convert chamber pressure from psi to Pa
     FuelArea = mdot_fuel/(DisCoef*(math.sqrt(2*rhof*(Pinjection-Pc))))
     OrificeAreaf = FuelArea/OrificeCountf
     OrificeDiamf = (4*OrificeAreaf/math.pi)**0.5
     
     OxiArea = mdot_oxidizer/(DisCoef*(math.sqrt(2*rhoox*(Pinjection-Pc))))
     OrificeAreaox = OxiArea/OrificeCountox
-    baseox = 0.002 #mm
-    OrificeLengthox = OrificeAreaox/baseox
+    OrificeDiamox = ((4*OrificeAreaox)/math.pi)**0.5
+    test = 2*math.sqrt(OrificeAreaox/math.pi)
+    print(test)
     
     Ac = AcAt*At
     Dc = (4*Ac/math.pi)**0.5
@@ -117,11 +118,11 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     print(f'Exit Area:                          {Ae*1e6:.3f} mm^2')
     print(f'Exit Diameter:                      {De*1000:.3f} mm')
     print('\n----------------Injector Parameters---------------')
-    print(f'Injection Pressure:                 {Pinjection/1000:.3f} kPa')
+    print(f'Injection Pressure:                 {Pinjection/6894.76:.3f} psi')
     print(f'Fuel Area:                          {FuelArea*1e6:.3f} mm^2')
     print(f'Fuel Orifice Diameter:              {OrificeDiamf*1000:.3f} mm')
     print(f'Oxidizer Area:                      {OxiArea*1e6:.3f} mm^2')
-    print(f'Oxidizer Orifice Length:            {OrificeLengthox*1000:.3f} mm')
+    print(f'Oxidizer Orifice Diameter:          {OrificeDiamox*1000:.3f} mm')
     print('\n----------Combustion Chamber Parameters-----------')
     print(f'Chamber Area:                       {Ac*1e6:.3f} mm^2')
     print(f'Chamber Diameter:                   {Dc*1000:.3f} mm')
@@ -154,8 +155,8 @@ if __name__ == "__main__":
         rhof = 789.4  #TODO: Update value
         rhoox = 776.415  #TODO: Update value
         DisCoef = 0.6  # Discharge coefficient (Maybe Update?)
-        OrificeCountf = 1 #TODO: Update value
-        OrificeCountox = 16 #TODO: Update value
+        OrificeCountf = 6 #TODO: Update value
+        OrificeCountox = 6 #TODO: Update value
         AcAt = 5 #TODO: Update value
         Lstar = 0.5 #TODO: Update value
     else:
