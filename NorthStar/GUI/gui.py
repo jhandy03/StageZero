@@ -5,7 +5,7 @@ Author(s): Jordan Handy
 Last Updated: 06/14/2025
 
 Description:
-    GUI used for the test stand BLANK for the Gallus Engine
+    GUI used for the test stand NorthStar for the Gallus Engine
     
 Feature List:
 
@@ -23,7 +23,6 @@ Notes:
 
 """
 import customtkinter as ctk
-# import ttkbootstrap as ttk #might not be needed. tkinter doesn't like working with both ttk and ctk
 from tkdial import Meter
 import time
 import matplotlib.pyplot as plt

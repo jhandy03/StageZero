@@ -1,44 +1,54 @@
-import customtkinter
-from tkdial import Meter
-import time
-from tkinter import *
+import customtkinter as ctk
+# from tkdial import Meter
 
-app = customtkinter.CTk()
-# app.geometry("950x350")
 
-# meter1 = Meter(app, radius=300, start=0, end=160, border_width=0,
-#                fg="black", text_color="white", start_angle=270, end_angle=-270,
-#                text_font="DS-Digital 30", scale_color="white", needle_color="red")
-# meter1.set_mark(140, 160) # set red marking from 140 to 160
-# meter1.grid(row=0, column=1, padx=20, pady=30)
+root = ctk.CTk()
+root._state_before_windows_set_titlebar_color = "zoomed"
 
-# meter2 = Meter(app, radius=260, start=0, end=200, border_width=5,
-#                fg="black", text_color="white", start_angle=270, end_angle=-360,
-#                text_font="DS-Digital 30", scale_color="black", axis_color="white",
-#                needle_color="white")
-# meter2.set_mark(1, 100, "#92d050")
-# # meter2.set_mark(105, 150, "yellow")
-# # meter2.set_mark(155, 196, "red")
-# meter2.set(80) # set value
-# meter2.grid(row=0, column=0, padx=20, pady=30)
-# meter3 = Meter(app, fg="#242424", radius=300, start=0, end=50,
-#             border_width=0, text_color="white",
-#                start_angle=0, end_angle=-360, scale_color="white", axis_color="cyan",
-#                needle_color="white",  scroll_steps=1, text="")
-# meter3.set(15)
-# meter3.grid(row=0, column=2, pady=30)
+frame1 = ctk.CTkFrame(root)
+frame1.grid(row=0,column=0,sticky="nsew")
+frame1.grid_columnconfigure(0,weight=1)
+frame1.grid_columnconfigure(1,weight=2)
+frame1.grid_columnconfigure(2,weight=3)
+# frame1.grid_columnconfigure(3,weight=1)
+# frame1.grid_columnconfigure(4,weight=1)
 
-# for i, tick in enumerate(meter3.find_withtag('scale')):
-#     meter3.itemconfig(tick, text="")
+frame2 = ctk.CTkFrame(root)
+frame2.grid(row=0,column=1)
+frame2.grid_columnconfigure(1,weight=2)
 
-def click():
-    progress.step()
+button1 = ctk.CTkButton(frame1,text="This Is Button 1")
+button1.grid(row=0,column=0)
+
+
+button2 = ctk.CTkButton(frame1,text="This Is Button 2")
+button2.grid(row=0,column=1)
+
+
+button3 = ctk.CTkButton(frame1,text="This Is Button 3")
+button3.grid(row=0,column=2,columnspan=2)
+
+
+label = ctk.CTkLabel(frame2,text="Label")
+label.grid(row=1,column=0)
+
+frame3 = ctk.CTkFrame(root)
+frame3.grid(row=1,column=0,columnspan=2,sticky="nsew")
+
+
     
-progress = customtkinter.CTkProgressBar(app, orientation="vertical", width=20, height=300,corner_radius=0)
-progress.pack(pady=40)
-progress.set(0)
-button = customtkinter.CTkButton(app,text="",command=click)
-button.pack(pady=20)
+for i in range(5):
+    if i%2==1:
+        frame3.grid_rowconfigure(i, weight=1)
+    else:
+        frame3.grid_rowconfigure(i, weight=2)
+for i in range(5):
+    button = ctk.CTkButton(frame3, text = f'Button {i}')
+    button.grid(row=i,column=0,sticky="nsew")
+root.mainloop()
 
 
-app.mainloop()
+
+
+
+

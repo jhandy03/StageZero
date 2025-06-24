@@ -1,0 +1,9 @@
+import math
+
+area = 74.084
+
+diameter = 2*math.sqrt(area/math.pi)
+print(diameter)
+
+diam = 2*(area/math.pi)**0.5
+print(diam)

@@ -88,7 +88,7 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     Ae = AeAt*At
     De = (4*Ae/math.pi)**0.5
     
-    Pinjection = 1.3*Pc*6894.76  #TODO: Not sure if this value is correct. revisit later (6894.75: psi -> Pa)
+    Pinjection = 1.15*Pc*6894.76  #TODO: Not sure if this value is correct. revisit later (6894.75: psi -> Pa)
     Pc = Pc * 6894.76  # Convert chamber pressure from psi to Pa
     FuelArea = mdot_fuel/(DisCoef*(math.sqrt(2*rhof*(Pinjection-Pc))))
     OrificeAreaf = FuelArea/OrificeCountf
@@ -97,8 +97,9 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     OxiArea = mdot_oxidizer/(DisCoef*(math.sqrt(2*rhoox*(Pinjection-Pc))))
     OrificeAreaox = OxiArea/OrificeCountox
     OrificeDiamox = ((4*OrificeAreaox)/math.pi)**0.5
-    test = 2*math.sqrt(OrificeAreaox/math.pi)
-    print(test)
+   
+    delta = math.sqrt(OrificeAreaox/math.pi)-(OrificeDiamf/2)-0.001
+    print(delta*1e3)
     
     Ac = AcAt*At
     Dc = (4*Ac/math.pi)**0.5
@@ -119,9 +120,9 @@ def mainCalculations(EngineName,runtime,Thrust,Pc,Pa,FuelType,OxidizerType,
     print(f'Exit Diameter:                      {De*1000:.3f} mm')
     print('\n----------------Injector Parameters---------------')
     print(f'Injection Pressure:                 {Pinjection/6894.76:.3f} psi')
-    print(f'Fuel Area:                          {FuelArea*1e6:.3f} mm^2')
+    print(f'Individual Fuel Area:               {FuelArea*1e6/OrificeCountf:.3f} mm^2')
     print(f'Fuel Orifice Diameter:              {OrificeDiamf*1000:.3f} mm')
-    print(f'Oxidizer Area:                      {OxiArea*1e6:.3f} mm^2')
+    print(f'Individual Oxidizer Area:           {OxiArea*1e6/OrificeCountox:.3f} mm^2')
     print(f'Oxidizer Orifice Diameter:          {OrificeDiamox*1000:.3f} mm')
     print('\n----------Combustion Chamber Parameters-----------')
     print(f'Chamber Area:                       {Ac*1e6:.3f} mm^2')
