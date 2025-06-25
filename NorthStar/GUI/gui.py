@@ -46,12 +46,35 @@ class TestStandGUI:
         root.grid_columnconfigure(2, weight=1)
         root.grid_rowconfigure(0,weight=1)
         
-        metric_frame = ctk.CTkFrame(root,border_width = 2, bg_color = "#4622D8")
+        metric_frame = ctk.CTkFrame(root,border_width = 2, fg_color = "#4622D8")
         metric_frame.grid(row=0, column=0,sticky="nsew")
-        thrust_frame = ctk.CTkFrame(root,border_width=2, bg_color = "#B82121")
+
+        metric_frame.grid_rowconfigure(0,weight=0)
+        mass_flow_label = ctk.CTkLabel(metric_frame,text='Mass Flow Rate',font=('Computer Modern',20))
+        mass_flow_label.grid(row=0, column=0,sticky='ns')
+
+        metric_frame.grid_rowconfigure(1,weight=1)
+        metric_frame.grid_rowconfigure(2,weight=0)
+        metric_frame.grid_rowconfigure(3,weight=1)
+        metric_frame.grid_rowconfigure(4,weight=0)
+        metric_frame.grid_rowconfigure(5,weight=1)
+        metric_frame.grid_columnconfigure(0,weight=1)
+        
+        thrust_frame = ctk.CTkFrame(root,border_width=2, fg_color = "#B82121")
         thrust_frame.grid(row=0, column=1,sticky="nsew")
-        control_frame = ctk.CTkFrame(root,border_width=2,bg_color = "#2C885C")
+        thrust_frame.grid_columnconfigure(0,weight=1)
+        thrust_frame.grid_rowconfigure(0,weight=2)
+        thrust_frame.grid_rowconfigure(1,weight=1)
+        thrust_frame.grid_rowconfigure(2,weight=1)
+        
+        control_frame = ctk.CTkFrame(root,border_width=2,fg_color = "#2C885C")
         control_frame.grid(row=0, column=2,sticky="nsew")
+        control_frame.grid_columnconfigure(0,weight=1)
+        control_frame.grid_rowconfigure(0,weight=0)
+        control_frame.grid_rowconfigure(1,weight=2)
+        control_frame.grid_rowconfigure(2,weight=0)
+        control_frame.grid_rowconfigure(3,weight=1)
+        control_frame.grid_rowconfigure(4,weight=1)
 
         root.mainloop()
         
