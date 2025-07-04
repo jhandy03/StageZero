@@ -156,7 +156,7 @@ if __name__ == "__main__":
         rhof = 789.4  #TODO: Update value
         rhoox = 776.415  #TODO: Update value
         DisCoef = 0.6  # Discharge coefficient (Maybe Update?)
-        OrificeCountf = 6 #TODO: Update value
+        OrificeCountf = 12 #TODO: Update value
         OrificeCountox = 6 #TODO: Update value
         AcAt = 5 #TODO: Update value
         Lstar = 0.5 #TODO: Update value
